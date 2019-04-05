@@ -50,4 +50,7 @@ print(matches)
 # To do: 
 # - Pick latest index/entityid and map it with rest of the entities (remove duplicate mapping)
 # - Use matches list and map it with original df list...
+# Export original df list to CSV and matches array 
+# df.to_csv('df.csv')
+# matches.to_csv('matches.csv')
 
