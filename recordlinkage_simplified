@@ -54,3 +54,6 @@ print(matches)
 # df.to_csv('df.csv')
 # matches.to_csv('matches.csv')
 
+# Data Chunking
+# https://github.com/J535D165/recordlinkage/issues/33
+
