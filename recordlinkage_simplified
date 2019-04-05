@@ -1,0 +1,50 @@
+# Install python
+# Install recordlinkage
+# pip install recordlinkage
+
+import recordlinkage
+import pandas
+df = pandas.read_csv('d:/entity_csv.csv', encoding = "ISO-8859-1")
+
+# Blocking Index on first_name and last_name
+indexer = recordlinkage.Index()
+indexer.block(['first_name','last_name'])
+
+#Show comparison pairs
+pairs = indexer.index(df)
+print (len(pairs))
+
+#comparison probablity set
+compare_cl = recordlinkage.Compare()
+comparison.exact('first_name', 'first_name', label='first_name')
+comparison.exact('last_name', 'last_name', label='last_name')
+comparison.exact('email', 'email', label='email')
+
+comparison.string('address1', 'address1', method='jarowinkler', threshold=0.85, label='address1')
+comparison.string('address2', 'address2', method='jarowinkler', threshold=0.85, label='address2')
+comparison.string('suburb', 'suburb', method='jarowinkler', threshold=0.85, label='suburb')
+comparison.exact('state', 'state', label='state')
+comparison.exact('postcode', 'postcode', label='postcode')
+
+comparison.string('phone_hm', 'phone_hm', method='jarowinkler', threshold=0.85, label='phone_hm')
+comparison.string('phone_wk', 'phone_wk', method='jarowinkler', threshold=0.85, label='phone_wk')
+comparison.string('phone_mb', 'phone_mb', method='jarowinkler', threshold=0.85, label='phone_mb')
+
+# computing comparison against pairs
+features = comparison.compute(pairs, df)
+
+# qualifying matches , based on criteria > 8
+matches = features[features.sum(axis=1) > 8]
+
+#print all matching pairs
+print(matches)
+
+#Checking if records match?
+#df.loc[1166]
+#df.loc[1165]
+
+
+# To do: 
+# - Pick latest index/entityid and map it with rest of the entities (remove duplicate mapping)
+# - Use matches list and map it with original df list...
+
