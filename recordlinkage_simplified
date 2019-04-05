@@ -1,3 +1,6 @@
+# Taken from examples: https://uwescience.github.io/ds4ad/pandas_data_manipulation/004-deduplication-record-linkage.html
+# https://github.com/J535D165/recordlinkage
+
 # Install python
 # Install recordlinkage
 # pip install recordlinkage
